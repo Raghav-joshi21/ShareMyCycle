@@ -10,6 +10,9 @@ export interface Cycle {
   isAvailableNow: boolean;
   nextAvailableTime?: string;
   rating: number;
+  description?: string;
+  condition?: "excellent" | "good" | "fair";
+  image?: string;
 }
 
 export interface User {

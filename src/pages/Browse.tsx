@@ -1,5 +1,5 @@
 // pages/Browse.tsx
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { mockCycles } from "../data";
 import type { Cycle } from "../types";
@@ -12,9 +12,26 @@ export function Browse() {
   const [query, setQuery] = useState("");
   const [maxPrice, setMaxPrice] = useState(5);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
+  const [userCycles, setUserCycles] = useState<Cycle[]>([]);
 
   const minPriceValue = 1;
   const maxPriceValue = 6;
+
+  // Load user's listings from localStorage
+  useEffect(() => {
+    const savedListings = localStorage.getItem("myListings");
+    if (savedListings) {
+      try {
+        const parsed = JSON.parse(savedListings);
+        setUserCycles(parsed);
+      } catch (e) {
+        console.error("Error loading listings:", e);
+      }
+    }
+  }, []);
+
+  // Combine mock cycles with user's real listings
+  const allCycles = [...mockCycles, ...userCycles];
 
   // 0 → 1 between min and max, then map 120 (green) → 0 (red)
   const ratio = (maxPrice - minPriceValue) / (maxPriceValue - minPriceValue);
@@ -22,7 +39,7 @@ export function Browse() {
   const sliderColor = `hsl(${120 - 120 * clamped}, 80%, 50%)`;
 
   const filtered = useMemo(() => {
-    return mockCycles.filter((c: Cycle) => {
+    return allCycles.filter((c: Cycle) => {
       if (onlyAvailable && !c.isAvailableNow) return false;
       if (c.pricePerHour > maxPrice) return false;
       if (
@@ -36,7 +53,7 @@ export function Browse() {
       }
       return true;
     });
-  }, [query, maxPrice, onlyAvailable]);
+  }, [query, maxPrice, onlyAvailable, allCycles]);
 
   return (
     <main className="pt-20 max-w-6xl mx-auto px-4 pb-10 grid md:grid-cols-[260px,1fr] gap-6 text-slate-900 bg-[#FCF6D9]">
@@ -105,6 +122,9 @@ export function Browse() {
               Browse cycles
             </h1>
             <p className="text-xs text-slate-600">
+              {userCycles.length > 0 && (
+                <>Includes {userCycles.length} of your listing{userCycles.length !== 1 && "s"}. </>
+              )}
               Find a cycle that fits your route, budget and timing.
             </p>
           </div>
