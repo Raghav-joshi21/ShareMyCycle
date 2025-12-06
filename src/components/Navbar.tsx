@@ -36,7 +36,9 @@ export function Navbar() {
           </NavLink>
         </nav>
         <button className="hidden md:inline-flex rounded-full border border-[#DDBA7D] bg-[#DDBA7D]/70 px-3 py-1.5 text-sm text-slate-900 hover:bg-[#DDBA7D]">
-          Login (mock)
+          <Link to="/login" className="no-underline text-slate-900">
+            Login
+          </Link>
         </button>
       </div>
     </header>

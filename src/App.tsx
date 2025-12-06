@@ -9,6 +9,7 @@ import { Browse } from "./pages/Browse";
 import { ListCycle } from "./pages/ListCycle";
 import { Dashboard } from "./pages/Dashboard";
 import { About } from "./pages/About";
+import { Login } from "./pages/Login";
 
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -45,6 +46,7 @@ function App() {
           >
             <Routes location={location}>
               <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/browse" element={<Browse />} />
               <Route path="/list" element={<ListCycle />} />
               <Route path="/dashboard" element={<Dashboard />} />
