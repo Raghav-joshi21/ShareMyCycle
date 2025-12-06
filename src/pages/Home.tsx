@@ -42,7 +42,43 @@ export function Home() {
   const heroOpacity = Math.max(1 - scrollY / 600, 0.75);
 
   return (
-    <main className="flex flex-col pt-20 bg-[#FCF6D9] text-slate-900">
+    <main className="flex flex-col bg-[#FCF6D9] text-slate-900">
+      {/* SPLINE 3D HERO SECTION - Full Viewport */}
+      <section className="relative w-full min-h-screen bg-gradient-to-b from-[#FCF6D9] via-[#DDBA7D]/20 to-[#FCF6D9] overflow-hidden">
+        {/* Smooth gradient overlay at top */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#FCF6D9] via-[#FCF6D9]/50 to-transparent z-10 pointer-events-none" />
+        
+        {/* Spline 3D iframe with crop to hide watermark */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full h-screen overflow-hidden"
+        >
+          <iframe
+            src="https://my.spline.design/r4xbot-GTS1fWXl1y2qAM0dxRsQPp7P/"
+            frameBorder="0"
+            width="100%"
+            height="100%"
+            className="w-full h-full absolute top-0 left-0"
+            style={{
+              transform: "scale(1.05) translateY(-3%)",
+              minHeight: "110vh"
+            }}
+            title="ShareMyCycle 3D Animation"
+            allowFullScreen
+          />
+        </motion.div>
+
+        {/* Smooth fade-out overlay at bottom to hide watermark */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FCF6D9] via-[#FCF6D9]/80 to-transparent z-20 pointer-events-none" />
+      </section>
+
+      {/* Smooth transition section */}
+      <section className="bg-[#FCF6D9] pt-0">
+        <div className="max-w-6xl mx-auto px-4 py-6"></div>
+      </section>
+
       {/* SCROLL STORY SECTION (phone -> bike -> payment -> lock) */}
       <section className="bg-[#FCF6D9]">
         <ScrollAnimation />
