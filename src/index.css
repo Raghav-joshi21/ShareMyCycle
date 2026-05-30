@@ -1,5 +1,67 @@
 @import "tailwindcss";
 
+@theme {
+  /* --- Brand Colors --- */
+  --color-brand-blue: #3651AB;
+  --color-brand-blue-light: #4A63BD;
+  --color-brand-blue-dark: #2B3F8A;
+  --color-brand-green: #7BAD1E;
+  --color-brand-green-light: #93BC25;
+  --color-brand-green-dark: #5C8416;
+  --color-brand-tan: #DDBA7D;
+  --color-brand-tan-light: #E8CFA0;
+  --color-brand-tan-dark: #C9A362;
+  --color-brand-cream: #FAF5ED;
+  --color-brand-cream-dark: #F0E8D8;
+
+  /* --- Neutral scale --- */
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FAFAF8;
+  --color-surface-sunken: #F5F3EF;
+  --color-border: #E8E4DD;
+  --color-border-strong: #D4CFC6;
+  --color-text-primary: #0f0f0f;
+  --color-text-secondary: #4A4A42;
+  --color-text-tertiary: #8A8A80;
+
+  /* --- Dark section --- */
+  --color-dark: #0f0f0f;
+  --color-dark-surface: #1a1a1a;
+  --color-dark-border: #2a2a2a;
+  --color-dark-text: #e5e5e5;
+  --color-dark-text-muted: #999999;
+
+  /* --- Semantic --- */
+  --color-success: #16A34A;
+  --color-warning: #D97706;
+  --color-error: #DC2626;
+  --color-info: #3651AB;
+
+  /* --- Shadows (layered, subtle) --- */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* --- Border Radius --- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* --- Font families --- */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
 html,
 body,
 #root {
@@ -7,38 +69,33 @@ body,
 }
 
 body {
-  @apply text-slate-900;
-  background: radial-gradient(circle at top, #020617 0, #020617 36%, #020617 40%, #020617 45%, #020617 46%, #020617 55%, #020617 100%);
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-brand-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
-  background:
-    radial-gradient(circle at top left, rgba(34, 197, 94, 0.08), transparent 60%),
-    radial-gradient(circle at top right, rgba(59, 130, 246, 0.09), transparent 55%),
-    linear-gradient(to bottom, #020617 0, #020617 32%, #020617 50%, #020617 70%, #020617 100%);
+/* ---- Lenis smooth scroll ---- */
+html.lenis, html.lenis body {
+  height: auto;
 }
 
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* ---- Leaflet ---- */
 .leaflet-container {
   width: 100%;
   height: 100%;
 }
 
-/* Animated cycle markers – now very subtle */
-@keyframes cycle-pulse {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.98;
-  }
-  50% {
-    transform: translateY(-2px) scale(1.03);
-    opacity: 0.94;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 0.98;
-  }
-}
-
+/* ---- Map markers ---- */
 .cycle-marker-icon {
   display: flex;
   align-items: center;
@@ -50,39 +107,28 @@ body {
 .cycle-marker-badge {
   padding: 3px 8px;
   border-radius: 9999px;
-  background: #0f172a;
+  background: var(--color-text-primary);
   color: #e5f9f0;
   border: 1px solid rgba(34, 197, 94, 0.7);
-  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.45);
+  box-shadow: var(--shadow-md);
   font-weight: 600;
   font-size: 11px;
   white-space: nowrap;
-  animation: cycle-pulse 3.2s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+
+.cycle-marker-badge:hover {
+  transform: scale(1.08);
 }
 
 .cycle-marker-icon--dim .cycle-marker-badge {
-  background: rgba(15, 23, 42, 0.9);
-  border-color: rgba(148, 163, 184, 0.6);
+  background: rgba(26, 26, 26, 0.85);
+  border-color: rgba(148, 163, 184, 0.5);
   color: #cbd5f5;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
-/* Animated user location pin – subtle breathing */
-@keyframes user-pulse {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-1px) scale(1.04);
-    opacity: 0.92;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
+/* ---- User location marker ---- */
 .user-location-icon {
   display: flex;
   align-items: center;
@@ -93,49 +139,68 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
+  width: 16px;
+  height: 16px;
   border-radius: 9999px;
-  background: #eff6ff;
-  color: #1d4ed8;
-  border: 2px solid #3b82f6;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.35);
-  font-size: 14px;
-  animation: user-pulse 3s ease-out infinite;
+  background: var(--color-brand-blue);
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--color-brand-blue), var(--shadow-md);
 }
 
-/* Simple fade-in-up utility used on Home sections */
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
+/* ---- Text reveal clip ---- */
+.text-reveal-clip {
+  clip-path: inset(0 0 100% 0);
+}
+
+.text-reveal-clip.revealed {
+  clip-path: inset(0 0 0% 0);
+  transition: clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ---- Smooth link underlines ---- */
+.link-hover {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.link-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---- Focus indicators ---- */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Selection color ---- */
+::selection {
+  background: var(--color-brand-blue);
+  color: white;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out both;
-}
-
-.animate-fade-in-up.delay-150 {
-  animation-delay: 150ms;
-}
-
-/* Smooth route transition when navigating via navbar */
-@keyframes route-slide-fade {
-  0% {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.route-transition {
-  animation: route-slide-fade 0.35s ease-out;
 }

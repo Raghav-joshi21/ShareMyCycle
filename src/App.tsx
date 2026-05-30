@@ -1,7 +1,9 @@
 // App.tsx
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import Lenis from "lenis";
 
 // pages
 import { Home } from "./pages/Home";
@@ -12,29 +14,36 @@ import { About } from "./pages/About";
 import { Login } from "./pages/Login";
 
 import { AnimatePresence, motion } from "framer-motion";
-
-const routeVariants = {
-  initial: { opacity: 0, y: 12, filter: "blur(2px)" },
-  animate: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.35 },
-  },
-  exit: {
-    opacity: 0,
-    y: -12,
-    filter: "blur(2px)",
-    transition: { duration: 0.25 },
-  },
-};
+import { routeVariants } from "./lib/motion";
 
 function App() {
   const location = useLocation();
-   return (
-    <div className="min-h-screen flex flex-col bg-[#FCF6D9] text-slate-900">
+
+  // Lenis smooth scrolling
+  useEffect(() => {
+    const lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
+  }, []);
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-brand-cream text-text-primary">
       <Navbar />
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
@@ -42,7 +51,6 @@ function App() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="h-full"
           >
             <Routes location={location}>
               <Route path="/" element={<Home />} />

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { scaleIn } from "../lib/motion";
+import { TextReveal } from "../components/TextReveal";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -21,55 +23,35 @@ export function Login() {
     }, 1500);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
   return (
-    <div className="min-h-screen pt-24 pb-12 px-4 flex items-center justify-center bg-[#FCF6D9]">
+    <div className="min-h-screen pt-14 pb-12 px-4 flex items-center justify-center">
       <motion.div
-        variants={containerVariants}
+        variants={scaleIn}
         initial="hidden"
         animate="visible"
+        transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
         className="w-full max-w-md"
       >
         {/* Logo Section */}
-        <motion.div variants={itemVariants} className="text-center mb-8">
+        <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-6">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#DDBA7D] text-slate-900 font-bold shadow-lg text-lg">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue text-white font-bold shadow-lg text-lg">
               S
             </span>
-            <span className="font-semibold text-xl text-slate-900">ShareMyCycle</span>
+            <span className="font-semibold text-xl text-text-primary">ShareMyCycle</span>
           </Link>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Welcome Back</h1>
-          <p className="text-slate-600">Sign in to your account to continue</p>
-        </motion.div>
+          <TextReveal as="h1" className="font-serif text-3xl md:text-4xl text-text-primary tracking-tight">
+            Welcome Back
+          </TextReveal>
+          <p className="text-text-secondary mt-2">Sign in to your account to continue</p>
+        </div>
 
         {/* Login Form Card */}
-        <motion.div
-          variants={itemVariants}
-          className="bg-white rounded-2xl shadow-lg p-8 border border-[#E4D6A8]"
-        >
+        <div className="bg-surface rounded-xl shadow-md border border-border p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email Input */}
-            <motion.div variants={itemVariants}>
-              <label htmlFor="email" className="block text-sm font-semibold text-slate-900 mb-2">
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold text-text-primary mb-2">
                 Email Address
               </label>
               <input
@@ -79,13 +61,13 @@ export function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full px-4 py-3 rounded-lg border border-[#E4D6A8] bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#DDBA7D] focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-white text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all duration-200"
               />
-            </motion.div>
+            </div>
 
             {/* Password Input */}
-            <motion.div variants={itemVariants}>
-              <label htmlFor="password" className="block text-sm font-semibold text-slate-900 mb-2">
+            <div>
+              <label htmlFor="password" className="block text-sm font-semibold text-text-primary mb-2">
                 Password
               </label>
               <input
@@ -95,30 +77,29 @@ export function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full px-4 py-3 rounded-lg border border-[#E4D6A8] bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#DDBA7D] focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-white text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all duration-200"
               />
-            </motion.div>
+            </div>
 
             {/* Remember Me & Forgot Password */}
-            <motion.div variants={itemVariants} className="flex items-center justify-between text-sm">
+            <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-[#E4D6A8] bg-slate-50 accent-[#DDBA7D] cursor-pointer"
+                  className="w-4 h-4 rounded border-border bg-white accent-brand-blue cursor-pointer"
                 />
-                <span className="text-slate-600">Remember me</span>
+                <span className="text-text-secondary">Remember me</span>
               </label>
-              <Link to="/forgot-password" className="text-[#DDBA7D] hover:text-[#C9A570] font-medium transition-colors">
+              <Link to="/forgot-password" className="text-brand-blue link-hover font-medium transition-colors">
                 Forgot password?
               </Link>
-            </motion.div>
+            </div>
 
             {/* Login Button */}
-            <motion.button
-              variants={itemVariants}
+            <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 px-4 bg-gradient-to-r from-[#DDBA7D] to-[#D4A870] text-slate-900 font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed mt-6"
+              className="w-full py-3 px-4 bg-brand-blue hover:bg-brand-blue-dark text-white font-medium rounded-full transition-all duration-300 hover:shadow-lg hover:scale-[1.01] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none mt-6"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -131,39 +112,39 @@ export function Login() {
               ) : (
                 "Sign In"
               )}
-            </motion.button>
+            </button>
           </form>
 
           {/* Divider */}
-          <motion.div variants={itemVariants} className="relative my-6">
+          <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-[#E4D6A8]" />
+              <div className="w-full border-t border-border" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-slate-600">Or continue with</span>
+              <span className="px-2 bg-surface text-text-secondary">Or continue with</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Social Login Buttons */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 gap-3">
-            <button className="py-2 px-4 border border-[#E4D6A8] rounded-lg text-slate-900 font-medium hover:bg-slate-50 transition-colors">
+          <div className="grid grid-cols-2 gap-3">
+            <button className="py-2 px-4 border border-border rounded-lg text-text-primary font-medium hover:bg-surface-raised hover:scale-[1.02] transition-all duration-200">
               Google
             </button>
-            <button className="py-2 px-4 border border-[#E4D6A8] rounded-lg text-slate-900 font-medium hover:bg-slate-50 transition-colors">
+            <button className="py-2 px-4 border border-border rounded-lg text-text-primary font-medium hover:bg-surface-raised hover:scale-[1.02] transition-all duration-200">
               GitHub
             </button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Sign Up Link */}
-        <motion.div variants={itemVariants} className="text-center mt-6">
-          <p className="text-slate-600">
+        <div className="text-center mt-6">
+          <p className="text-text-secondary">
             Don't have an account?{" "}
-            <Link to="/signup" className="font-semibold text-[#DDBA7D] hover:text-[#C9A570] transition-colors">
+            <Link to="/signup" className="font-semibold text-brand-blue link-hover transition-colors">
               Sign up here
             </Link>
           </p>
-        </motion.div>
+        </div>
       </motion.div>
     </div>
   );

@@ -1,0 +1,295 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1780168694409,
+  "projectRoot": "/Users/parikshitkaushal/Downloads/ShareMyCycle",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "19.2.0",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.0",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "7.2.4",
+        "category": "build"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "tsc -b && vite build",
+      "lint": "eslint .",
+      "preview": "vite preview"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": "ES modules",
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 1,
+      "lastAccessed": 1780168694332,
+      "keyFiles": [
+        "vite.svg"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 6,
+      "lastAccessed": 1780168694333,
+      "keyFiles": [
+        "App.css",
+        "App.tsx",
+        "data.ts",
+        "index.css",
+        "main.tsx"
+      ]
+    },
+    "src/assets": {
+      "path": "src/assets",
+      "purpose": "Static assets",
+      "fileCount": 1,
+      "lastAccessed": 1780168694342,
+      "keyFiles": [
+        "react.svg"
+      ]
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 6,
+      "lastAccessed": 1780168694343,
+      "keyFiles": [
+        "CycleCard.tsx",
+        "Footer.tsx",
+        "MapView.tsx"
+      ]
+    },
+    "src/pages": {
+      "path": "src/pages",
+      "purpose": "Page components",
+      "fileCount": 6,
+      "lastAccessed": 1780168694343,
+      "keyFiles": [
+        "About.tsx",
+        "Browse.tsx",
+        "Dashboard.tsx"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/pages/Dashboard.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1780170857555,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Navbar.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1780170769139,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Footer.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1780170784827,
+      "type": "file"
+    },
+    {
+      "path": "src/components/CycleCard.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1780170799480,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/Home.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1780170821061,
+      "type": "file"
+    },
+    {
+      "path": "src/index.css",
+      "accessCount": 8,
+      "lastAccessed": 1780170639290,
+      "type": "file"
+    },
+    {
+      "path": "src/App.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1780170666025,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/motion.ts",
+      "accessCount": 8,
+      "lastAccessed": 1780170776967,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/Browse.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1780170800915,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/Login.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1780170853413,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ListCycle.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1780170890956,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/About.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1780170958100,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 7,
+      "lastAccessed": 1780169900605,
+      "type": "directory"
+    },
+    {
+      "path": "tailwind.config.js",
+      "accessCount": 5,
+      "lastAccessed": 1780169587406,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 5,
+      "lastAccessed": 1780169632249,
+      "type": "directory"
+    },
+    {
+      "path": "src/components/ScroolAnimation.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1780169859425,
+      "type": "file"
+    },
+    {
+      "path": "src/components/MapView.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1780169886392,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 5,
+      "lastAccessed": 1780170607680,
+      "type": "file"
+    },
+    {
+      "path": "src/App.css",
+      "accessCount": 4,
+      "lastAccessed": 1780169413659,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 4,
+      "lastAccessed": 1780169414613,
+      "type": "file"
+    },
+    {
+      "path": "src/components/TextReveal.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1780170831374,
+      "type": "file"
+    },
+    {
+      "path": "src/data.ts",
+      "accessCount": 3,
+      "lastAccessed": 1780169502860,
+      "type": "file"
+    },
+    {
+      "path": "src/types.ts",
+      "accessCount": 3,
+      "lastAccessed": 1780169503203,
+      "type": "file"
+    },
+    {
+      "path": "src/main.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1780170600687,
+      "type": "file"
+    },
+    {
+      "path": "src/components/StatCard.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1780168982165,
+      "type": "file"
+    },
+    {
+      "path": "vite.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780168839803,
+      "type": "file"
+    },
+    {
+      "path": "postcss.config.cjs",
+      "accessCount": 1,
+      "lastAccessed": 1780168990311,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
